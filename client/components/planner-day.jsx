@@ -6,12 +6,14 @@ var RecipeStore = require("../stores/recipe-store");
 var PlannerActions = require("../actions/planner-actions");
 
 var PlannerDay = React.createClass({
+    mixins: [PlannerStore.mixin],
     render: function() {
         return (
             <p>
                 {this.getDayName()}
-                <select onChange={this.onRecipeChange} value={this.getRecipeId()} ref="recipeSelect">
-                {this.renderRecipeOptions()}
+                <select onChange={this.onRecipeChange} value={this.getSelectedValue()} ref="recipeSelect">
+                    <option key="-1" value="-1">- Nothing yet -</option>
+                    {this.renderRecipeOptions()}
                 </select>
             </p>
         );
@@ -19,8 +21,7 @@ var PlannerDay = React.createClass({
     getDayName: function() {
         return this.getDay().name;
     },
-    getRecipeId: function() {
-        //FJDTODO handle no recipe
+    getSelectedValue: function() {
         var recipe = this.getDay().recipe;
         return recipe ? recipe._id : null;
     },
@@ -34,10 +35,12 @@ var PlannerDay = React.createClass({
             );
         });
     },
+    storeDidChange: function () {
+    },
     onRecipeChange: function() {
         var recipeSelectNode = this.refs.recipeSelect.getDOMNode();
         var recipeId = recipeSelectNode.value;
-        var recipe = RecipeStore.getRecipe(recipeId);
+        var recipe = recipeId == -1 ? null : RecipeStore.getRecipe(recipeId);
         PlannerActions.setRecipeForDay(this.props.dayIndex, recipe);
     }
 });
