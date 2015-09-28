@@ -23,8 +23,7 @@ var PlannerStore = Biff.createStore({
     }
 }, function (payload) {
     if (payload.actionType === "SET_RECIPE_FOR_DAY") {
-        this.setRecipeForDay(payload.dayIndex);
-        this.setRecipeForDay(payload.recipe);
+        this.setRecipeForDay(payload.dayIndex, payload.recipe);
         this.emitChange();
     }
 });

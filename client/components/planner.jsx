@@ -6,15 +6,18 @@ var Planner = React.createClass({
     render: function() {
         return (
             <div>
-                <PlannerDay dayIndex="0"/>
-                <PlannerDay dayIndex="1"/>
-                <PlannerDay dayIndex="2"/>
-                <PlannerDay dayIndex="3"/>
-                <PlannerDay dayIndex="4"/>
-                <PlannerDay dayIndex="5"/>
-                <PlannerDay dayIndex="6"/>
+                {this.dayNodes()}
             </div>
         );
+    },
+    dayNodes: function() {
+        var result = [];
+        for (var dayIndex = 0; dayIndex < 7; dayIndex++) {
+            result.push(
+                <PlannerDay key={dayIndex} dayIndex={dayIndex} onRecipeChange={this.onRecipeChange} />
+            );
+        }
+        return result;
     }
 });
 
