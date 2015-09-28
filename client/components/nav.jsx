@@ -23,6 +23,7 @@ var Nav = React.createClass({
         <span className="navLink"><Link to="app">Home</Link> </span>
         <span className="navLink"><Link to="recipes">Recipes</Link> </span>
         <span className="navLink"><Link to="create">New Recipe</Link></span>
+        <span className="navLink"><Link to="planner">Week Planner</Link></span>
       </div>
     );
   }

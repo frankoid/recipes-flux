@@ -8,6 +8,7 @@ var RecipeDetails = require("./components/recipe-details");
 var RecipeForm = require("./components/recipe-form");
 var NotFound = require("./components/notfound");
 var RecipeActions = require("./actions/recipe-actions");
+var Planner = require("./components/planner");
 
 // Request
 var request = require("superagent");
@@ -25,6 +26,7 @@ var routes = (
     <Route name="edit" path="/edit/:_id" handler={RecipeForm} />
     <Route name="create" handler={RecipeForm} />
     <Route name="RecipeDetails" path="/recipe/:_id" handler={RecipeDetails} />
+    <Route name="planner" path="/planner" handler={Planner} />
     <NotFoundRoute handler={NotFound} />
   </Route>
 );
