@@ -68,7 +68,23 @@ var RecipeActions = Biff.createActions({
       actionType: "INGREDIENT_CREATED",
       data: data
     });
-  }
+  },
+  writeArbitraryData: function (data) {
+    var self = this;
+
+    request
+      .post("/arbitrary")
+      .send(data)
+      .set("Accept", "application/json")
+      .end(function(err, res) {
+        console.log("Callback: err = " + err + ", res.body = " + res.body);
+        self.dispatch({
+          actionType: "WRITE_ARBITRARY_DATA",
+          data: res.body
+        });
+      });
+  },
+
 });
 
 module.exports = RecipeActions;

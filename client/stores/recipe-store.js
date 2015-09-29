@@ -104,6 +104,10 @@ var RecipeStore = Biff.createStore({
     RecipeStore.updatePortions(payload.data);
     RecipeStore.emitChange();
   }
+  if (payload.actionType === "WRITE_ARBITRARY_DATA") {
+    console.log(payload.data);
+    RecipeStore.emitChange();
+  }
 });
 
 module.exports = RecipeStore;

@@ -19,5 +19,8 @@ module.exports = {
       .chain()
       .find({ _id: recipe._id })
       .assign({ingredients: recipe.ingredients});
+  },
+  createArbitrary: function(data) {
+    return db('arbitrary').push(data);
   }
-}
+};
